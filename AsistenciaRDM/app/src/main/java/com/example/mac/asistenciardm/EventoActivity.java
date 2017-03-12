@@ -5,32 +5,33 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class EventoActivity extends AppCompatActivity {
 
-    @BindView(R.id.etUsuarioLoguin)
-    EditText etUsuarioLoguin;
-    @BindView(R.id.etClaveLogin)
-    EditText etClaveLogin;
-    @BindView(R.id.btIniciarSesion)
-    Button btIniciarSesion;
+    @BindView(R.id.textView)
+    TextView textView;
+    @BindView(R.id.spSeleccionEvento)
+    Spinner spSeleccionEvento;
+    @BindView(R.id.btOkEvento)
+    Button btOkEvento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_evento);
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.btIniciarSesion)
+    @OnClick(R.id.btOkEvento)
     public void onClick() {
-        Intent intent=new Intent(MainActivity.this, EventoActivity.class);
+        Intent intent=new Intent(EventoActivity.this, MainAsistenciaActivity.class);
         startActivity(intent);
     }
 }
