@@ -1,5 +1,7 @@
 package com.example.mac.asistenciardm;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,11 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
+import android.widget.FrameLayout;
 import android.widget.Toast;
-
-import com.example.mac.asistenciardm.adapters.UsuarioAdapter;
-import com.example.mac.asistenciardm.database.SentenciaSQL;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,8 +20,10 @@ import butterknife.ButterKnife;
 public class MainAsistenciaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R.id.lvLista)
-    ListView lvLista;
+
+
+    //@BindView(R.id.fgFragmento)
+    //android.widget.fragment fgFragmento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,13 @@ public class MainAsistenciaActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.nav_registrar) {
             // Handle the camera actionç
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            VerificarFragment verificarFragment = new VerificarFragment();
+            fragmentTransaction.replace(R.id.fgFragmento, verificarFragment);
+            //fragmentTransaction.add(R.id.fgFragmento, verificarFragment);
+            fragmentTransaction.commit();
+
             Toast.makeText(this, "Registrar", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_verificar) {
             Toast.makeText(this, "Verificar", Toast.LENGTH_SHORT).show();
