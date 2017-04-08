@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_registrar"
+            android:title="Registrar" />
+        <item
+            android:id="@+id/nav_modificar"
+            android:title="Modificar" />
+        <item
+            android:id="@+id/nav_estadistica"
+            android:title="Estadistica" />
+    </group>
+
+    <item android:title="Comunicacion">
+        <menu>
+            <item
+                android:id="@+id/nav_informacionContacto"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Información y contacto" />
+        </menu>
+    </item>
+
+</menu>

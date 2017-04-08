@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.mac.asistenciardm.fragmentosMenu.ModificarFragmento">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/svFiltrado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.SearchView>
+    <ListView
+        android:id="@+id/lvListaRegistrar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+</LinearLayout>
