@@ -73,7 +73,7 @@ private ArrayList<AsistentesEvento> lista = new ArrayList<>();
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                lista1 = sentenciaSQL.filtarFamiliasEvento(newText, MainAsistenciaActivity.idEventoo);
+                lista1 = sentenciaSQL.filtratListarFamiliasAsistieronEvento(newText, MainAsistenciaActivity.idEventoo);
                 AsistentesAdapter asistentesAdapter1 = new AsistentesAdapter(getContext(), lista1);
 
                 lvListaRegistrar.setAdapter(asistentesAdapter1);

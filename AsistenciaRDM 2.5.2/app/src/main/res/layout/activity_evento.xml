@@ -5,161 +5,183 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    tools:context="com.example.mac.asistenciardm.EventoActivity">
 
-
-    tools:context="com.example.mac.asistenciardm.EventoActivity"
-    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <RadioGroup
+            android:id="@+id/rgEventos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/rgEventos">
+            android:orientation="horizontal">
+
             <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/rbActivo"
-                android:text="Activos"
-                android:layout_weight="2"
-                android:checked="true"/>
-            <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:checked="true"
+                android:textSize="25dp"
+                android:text="Activos" />
+
+            <RadioButton
                 android:id="@+id/rbTodos"
-                android:text="Todos"
-                android:layout_weight="2"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textSize="25dp"
+                android:text="Todos" />
         </RadioGroup>
-        </LinearLayout>
+    </LinearLayout>
 
     <Spinner
         android:id="@+id/spSeleccionEvento"
         android:layout_width="match_parent"
+        android:textSize="25sp"
+        android:layout_height="wrap_content"></Spinner>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ></Spinner>
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Evento: "
+                android:textColor="@color/colorAccent"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/etEvento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textColor="@android:color/black"
+                android:textSize="25dp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:padding="10dp"
+        android:layout_marginLeft="10dp"
+
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Evento: "
-            android:textSize="25dp"
-            android:textColor="@android:color/white"
-            android:background="@color/colorAccent"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textSize="25dp"
-            android:textColor="@android:color/white"
-            android:background="@color/colorAccent"
-            android:id="@+id/etEvento"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
             android:layout_weight="2"
             android:text="Fecha: "
             android:textColor="@color/colorAccent"
-            android:textStyle="bold"/>
+            android:textSize="25dp" />
+
         <TextView
+            android:id="@+id/etFecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
             android:layout_weight="2"
-            android:id="@+id/etFecha"
-       />
+            android:textSize="25dp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_marginLeft="10dp"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="Alcance: "
-            android:textSize="25dp"
             android:textColor="@color/colorAccent"
-            android:textStyle="bold"/>
+            android:textSize="25dp" />
+
         <TextView
+            android:id="@+id/etAlcacne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:textSize="25dp"
 
-            android:id="@+id/etAlcacne"/>
+            android:textSize="25dp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_marginLeft="10dp"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:textSize="25dp"
             android:text="Descripcion: "
             android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-        />
+            android:textSize="25dp" />
+
         <TextView
+            android:id="@+id/etDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:textSize="25dp"
 
-            android:id="@+id/etDescripcion"/>
+            android:textSize="25dp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_marginLeft="10dp"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:textSize="25dp"
             android:text="Estado: "
             android:textColor="@color/colorAccent"
-            android:textStyle="bold"/>
+            android:textSize="25dp" />
+
         <TextView
+            android:id="@+id/etEstadoEvento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:textSize="25dp"
-            android:id="@+id/etEstadoEvento"/>
+            android:textSize="25dp" />
     </LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp">
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@android:color/white"
-        android:background="@color/colorAccent"
-        android:text="Aceptar"
-
-        android:textSize="40dp"
-        android:gravity="center"
-        android:id="@+id/btOkEvento"/>
-</LinearLayout>
+        android:orientation="vertical">
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+        <Button
+            android:id="@+id/btOkEvento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:backgroundTint="@color/colorAccent"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:text="Aceptar"
+            android:textColor="@android:color/white" />
+</FrameLayout>
+    </LinearLayout>
 </LinearLayout>

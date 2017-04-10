@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -51,7 +52,7 @@ public class EventoActivity extends AppCompatActivity {
     @BindView(R.id.etEstadoEvento)
     TextView etEstadoEvento;
     @BindView(R.id.btOkEvento)
-    TextView btOkEvento;
+    Button btOkEvento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

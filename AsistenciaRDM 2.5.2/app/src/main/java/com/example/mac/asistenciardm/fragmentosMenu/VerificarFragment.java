@@ -50,8 +50,6 @@ public class VerificarFragment extends Fragment {
         lista = sentenciaSQL.listarFamiliasEvento(MainAsistenciaActivity.idEventoo);
         final AsistentesAdapter asistentesAdapter = new AsistentesAdapter(getContext(), lista);
         lvListaRegistrar.setAdapter(asistentesAdapter);
-
-
         lvListaRegistrar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

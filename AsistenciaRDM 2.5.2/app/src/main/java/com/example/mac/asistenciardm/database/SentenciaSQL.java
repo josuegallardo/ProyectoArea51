@@ -66,13 +66,31 @@ public class SentenciaSQL {
         }
         return lista;
     }
+    public ArrayList<AsistentesEvento> filtratListarFamiliasAsistieronEvento(String texto, int idEvento) {
+        SQLiteDatabase db = conexion.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select A.id_asistenciaEvento, E.evento, F.familia, EA.estadoAsistencia, A.id_familia " +
+                "from tb_asistenciaEvento A, tb_evento E, tb_familia F, tb_estadoAsistencia EA " +
+                "where A.id_evento = E.id_evento and A.id_familia = F.id_familia and A.id_estadoAsistencia = EA.id_estadoAsistencia and A.id_estadoAsistencia = 2" +
+                " and A.id_evento =" + idEvento + " and F.familia like '%' || '" + texto + "' || '%'", null);
+        ArrayList<AsistentesEvento> lista = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                AsistentesEvento asistentesEvento = new AsistentesEvento();
+                asistentesEvento.setIdAsistenciaEvento(cursor.getInt(cursor.getColumnIndex("id_asistenciaEvento")));
+                asistentesEvento.setFamilia(cursor.getString(cursor.getColumnIndex("familia")));
+                asistentesEvento.setIdFamilia(cursor.getInt(cursor.getColumnIndex("id_familia")));
+                lista.add(asistentesEvento);
+            } while (cursor.moveToNext());
+        }
+        return lista;
+    }
 
     public ArrayList<AsistentesEvento> filtarFamiliasEvento(String texto, int idEvento) {
         SQLiteDatabase db = conexion.getReadableDatabase();
         Cursor cursor = db.rawQuery("select A.id_asistenciaEvento, E.evento, F.familia, EA.estadoAsistencia, A.id_familia " +
-                "from tb_asistenciaEvento A, tb_evento E, tb_familia F, tb_estadoAsistencia EA " +
-                "where A.id_evento = E.id_evento and A.id_familia = F.id_familia and A.id_estadoAsistencia = EA.id_estadoAsistencia and A.id_estadoAsistencia = '1'" +
-                " and A.id_evento =" + idEvento + "", null);
+                        "from tb_asistenciaEvento A, tb_evento E, tb_familia F, tb_estadoAsistencia EA " +
+                        "where A.id_evento = E.id_evento and A.id_familia = F.id_familia and A.id_estadoAsistencia = EA.id_estadoAsistencia and A.id_estadoAsistencia = 1" +
+                        " and A.id_evento =" + idEvento + " and F.familia like '%' || '" + texto + "' || '%'", null);
         ArrayList<AsistentesEvento> lista = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
