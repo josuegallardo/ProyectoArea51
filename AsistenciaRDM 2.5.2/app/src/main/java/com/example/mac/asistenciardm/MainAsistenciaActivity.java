@@ -1,5 +1,6 @@
 package com.example.mac.asistenciardm;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -129,26 +131,59 @@ public class MainAsistenciaActivity extends AppCompatActivity
         VerificarFragment verificarFragment = new VerificarFragment();
         ModificarFragmento modificarFragmento = new ModificarFragmento();
         EstadisticaFragment estadisticaFragment = new EstadisticaFragment();
+        if (idEventoo != 1) {
 
-        if (id == R.id.nav_registrar) {
-            int idEvento = getIntent().getIntExtra("idEvento", -1);
-            Bundle bundle = new Bundle();
-            bundle.putInt("idEvento", idEvento);
-            VerificarFragment verificarFragment1 = new VerificarFragment();
-            verificarFragment1.setArguments(bundle);
-            fragmentTransaction.replace(R.id.fgFragmento, verificarFragment);
-            fragmentTransaction.commit();
-            setTitle("REGISTRO");
-        } else if (id == R.id.nav_modificar) {
-            fragmentTransaction.replace(R.id.fgFragmento, modificarFragmento);
-            fragmentTransaction.commit();
-            setTitle("MODIFICAR");
-        } else if (id == R.id.nav_estadistica) {
-            fragmentTransaction.replace(R.id.fgFragmento, estadisticaFragment);
-            fragmentTransaction.commit();
-            setTitle("ESTADISTICA");
-        } else if (id == R.id.nav_informacionContacto) {
 
+            if (id == R.id.nav_registrar) {
+                Toast.makeText(this, "Opcion no habilitada", Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.nav_modificar) {
+                Toast.makeText(this, "Opcion no habilitada", Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.nav_estadistica) {
+                fragmentTransaction.replace(R.id.fgFragmento, estadisticaFragment);
+                fragmentTransaction.commit();
+                setTitle("ESTADISTICA");
+            } else if (id == R.id.nav_informacionContacto) {
+                AlertDialog alertDialog = new AlertDialog.Builder(MainAsistenciaActivity.this).create();
+                alertDialog.setTitle("RDM APP");
+                alertDialog.setMessage("Todos los derechos reservados. Para mas informacion escribir a sistemas@rdm.edu.pe");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+        }else{
+            if (id == R.id.nav_registrar) {
+                int idEvento = getIntent().getIntExtra("idEvento", -1);
+                Bundle bundle = new Bundle();
+                bundle.putInt("idEvento", idEvento);
+                VerificarFragment verificarFragment1 = new VerificarFragment();
+                verificarFragment1.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fgFragmento, verificarFragment);
+                fragmentTransaction.commit();
+                setTitle("REGISTRO");
+            } else if (id == R.id.nav_modificar) {
+                fragmentTransaction.replace(R.id.fgFragmento, modificarFragmento);
+                fragmentTransaction.commit();
+                setTitle("MODIFICAR");
+            } else if (id == R.id.nav_estadistica) {
+                fragmentTransaction.replace(R.id.fgFragmento, estadisticaFragment);
+                fragmentTransaction.commit();
+                setTitle("ESTADISTICA");
+            } else if (id == R.id.nav_informacionContacto) {
+                AlertDialog alertDialog = new AlertDialog.Builder(MainAsistenciaActivity.this).create();
+                alertDialog.setTitle("RDM APP");
+                alertDialog.setMessage("Todos los derechos reservados. Para mas informacion escribir a sistemas@rdm.edu.pe");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
