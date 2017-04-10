@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mac.asistenciardm.R;
 import com.example.mac.asistenciardm.adapters.HijosAdapter;
@@ -62,6 +63,7 @@ public class DetalleFamiliaFragment extends Fragment {
                 sentenciaSQL.actualizarAsistencia(2, VerificarFragment.id_AsistenteEvento);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Toast.makeText(getActivity(), "Se realizo la asistencia", Toast.LENGTH_SHORT).show();
                 VerificarFragment verificarFragment = new VerificarFragment();
                 fragmentTransaction.replace(R.id.fgFragmento, verificarFragment);
                 fragmentTransaction.addToBackStack(null);

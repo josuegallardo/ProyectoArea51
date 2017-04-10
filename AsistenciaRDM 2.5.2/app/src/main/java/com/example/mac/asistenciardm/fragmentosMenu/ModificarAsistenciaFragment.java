@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mac.asistenciardm.R;
 import com.example.mac.asistenciardm.adapters.HijosAdapter;
@@ -99,6 +100,7 @@ public class ModificarAsistenciaFragment extends Fragment {
                 sentenciaSQL.actualizarAsistencia(idEstadoAsistencia, ModificarFragmento.id_AsistenteEvento);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Toast.makeText(getActivity(), "Se actualizo correctamente", Toast.LENGTH_SHORT).show();
                 ModificarFragmento modificarFragmento = new ModificarFragmento();
                 fragmentTransaction.replace(R.id.fgFragmento, modificarFragmento);
                 fragmentTransaction.addToBackStack(null);

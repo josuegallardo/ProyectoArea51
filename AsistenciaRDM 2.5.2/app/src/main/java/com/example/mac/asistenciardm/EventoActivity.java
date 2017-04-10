@@ -164,6 +164,6 @@ public class EventoActivity extends AppCompatActivity {
         intent.putExtra("idUsuario", idUsuario);
         intent.putExtra("idEvento", idEvento);
         startActivity(intent);
-
+        overridePendingTransition(R.anim.left_in, R.anim.left_out);
     }
 }

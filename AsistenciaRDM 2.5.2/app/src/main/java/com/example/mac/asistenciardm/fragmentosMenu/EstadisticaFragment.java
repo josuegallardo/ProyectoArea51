@@ -66,26 +66,23 @@ public class EstadisticaFragment extends Fragment {
         invitados = sentenciaSQL.familiasAsitieron(MainAsistenciaActivity.idEventoo);
         asistieron = sentenciaSQL.familiasAsitieronPorTipo(MainAsistenciaActivity.idEventoo, 2);
         noAsistieron = sentenciaSQL.familiasAsitieronPorTipo(MainAsistenciaActivity.idEventoo, 3);
+        int noAsistieronn = invitados - asistieron;
         tvInvitados.setText(String.valueOf(invitados));
         tvAsistieron.setText(String.valueOf(asistieron));
-        tvAsistieron.setText(String.valueOf(asistieron));
-        tvNoAsistieron.setText(String.valueOf(noAsistieron));
+        //tvAsistieron.setText(String.valueOf(asistieron));
+        tvNoAsistieron.setText(String.valueOf(noAsistieronn));
 
       //  pieChart = (PieChart)getArguments(R.id.chart1);
 pieChart = chart1;
         entries = new ArrayList<>();
         PieEntryLabels = new ArrayList<String>();
-
         AddValuesToPIEENTRY();
-
         AddValuesToPieEntryLabels();
-
         pieDataSet = new PieDataSet(entries, "");
         pieData = new PieData(PieEntryLabels, pieDataSet);
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         pieChart.setData(pieData);
         pieChart.animateY(3000);
-
         return view;
 
     }
