@@ -40,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
-
+   public String usuario = etUsuarioLoguin.getText().toString();
     @OnClick(R.id.btIniciarSesion)
     public void onClick() {
 
-        String usuario = etUsuarioLoguin.getText().toString();
+        //String usuario = etUsuarioLoguin.getText().toString();
         String clave = etClaveLogin.getText().toString();
         if (usuario.trim().length()==0){
             etUsuarioLoguin.setError("Ingrese un usuario");

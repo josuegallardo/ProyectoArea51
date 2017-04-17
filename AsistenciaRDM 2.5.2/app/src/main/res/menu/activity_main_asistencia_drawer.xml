@@ -13,13 +13,13 @@
             android:title="Estadistica" />
     </group>
 
-    <item android:title="Comunicacion">
-        <menu>
-            <item
-                android:id="@+id/nav_informacionContacto"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Información y contacto" />
-        </menu>
-    </item>
+  <item android:title="Comunicacion">
+  <menu>
+           <item
+               android:id="@+id/nav_informacionContacto"
+               android:icon="@drawable/ic_menu_send"
+               android:title="Información y contacto" />
+       </menu>
+   </item>
 
 </menu>

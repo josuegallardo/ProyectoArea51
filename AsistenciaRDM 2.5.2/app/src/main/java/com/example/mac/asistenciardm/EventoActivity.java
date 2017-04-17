@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,7 +16,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-
+import android.widget.Toast;
+import android.view.MenuItem;
 import com.example.mac.asistenciardm.database.SentenciaSQL;
 import com.example.mac.asistenciardm.modelos.Combo;
 import com.example.mac.asistenciardm.modelos.Evento;
@@ -24,6 +28,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.support.v7.appcompat.R.styleable.MenuItem;
 
 public class EventoActivity extends AppCompatActivity {
 
@@ -54,14 +60,19 @@ public class EventoActivity extends AppCompatActivity {
     @BindView(R.id.btOkEvento)
     Button btOkEvento;
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_asistencia, menu);
+        return true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
 
         SentenciaSQL sentenciaSQL = new SentenciaSQL(EventoActivity.this);
-
-
         setContentView(R.layout.activity_evento);
         ButterKnife.bind(this);
         setTitle("Seleccionar evento");
@@ -73,7 +84,6 @@ public class EventoActivity extends AppCompatActivity {
             rbActivo.setEnabled(false);
             rbTodos.setEnabled(false);
         }
-        //SentenciaSQL sentenciaSQL = new SentenciaSQL(EventoActivity.this);
         datoss.clear();
         datoss = sentenciaSQL.obtenerUsuariosActivos();
         ArrayList<String> usuarios = new ArrayList<>();
@@ -115,8 +125,12 @@ public class EventoActivity extends AppCompatActivity {
                     ArrayAdapter arrayAdapter = new ArrayAdapter(EventoActivity.this, R.layout.support_simple_spinner_dropdown_item, usuarios);
                     spSeleccionEvento.setAdapter(arrayAdapter);
                 }
+
+
             }
         });
+
+
 
         spSeleccionEvento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -145,6 +159,24 @@ public class EventoActivity extends AppCompatActivity {
         });
 
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // action with ID action_refresh was selected
+            case R.id.actionNuevoEvento:
+              Intent intent =new Intent(EventoActivity.this, CrearEvento.class);
+                startActivity(intent);
+                break;
+
+            default:
+                break;
+        }
+
+        return true;
+    }
+
 
     @OnClick(R.id.btOkEvento)
     public void onClick() {

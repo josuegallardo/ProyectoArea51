@@ -66,6 +66,22 @@ public class SentenciaSQL {
         }
         return lista;
     }
+
+    public void registrarEvento(String evento, String fecha, String alcance, String descripcion) {
+        //Asignamos el permiso de escritura a la base de datos
+        SQLiteDatabase db = conexion.getWritableDatabase();
+        //Creamos las variables con los parametros que vamos a registrar
+        ContentValues contentValues = new ContentValues();
+        int id_estadoEvento = 1;
+        contentValues.put("evento", evento);
+        contentValues.put("fecha", fecha);
+        contentValues.put("alcance", alcance);
+        contentValues.put("descripcion", descripcion);
+        contentValues.put("id_estadoEvento", id_estadoEvento);
+        db.insert("tb_evento", null, contentValues);
+    }
+
+
     public ArrayList<AsistentesEvento> filtratListarFamiliasAsistieronEvento(String texto, int idEvento) {
         SQLiteDatabase db = conexion.getReadableDatabase();
         Cursor cursor = db.rawQuery("select A.id_asistenciaEvento, E.evento, F.familia, EA.estadoAsistencia, A.id_familia " +
@@ -124,7 +140,7 @@ public class SentenciaSQL {
 
     public ArrayList<Combo> obtenerUsuariosActivos() {
         SQLiteDatabase db = conexion.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from tb_evento where id_evento = '1'", null);
+        Cursor cursor = db.rawQuery("select * from tb_evento where id_estadoEvento = 1", null);
         ArrayList<Combo> lista = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {

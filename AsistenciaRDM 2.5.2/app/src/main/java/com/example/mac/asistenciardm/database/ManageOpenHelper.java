@@ -26,7 +26,7 @@ public class ManageOpenHelper extends SQLiteOpenHelper {
                 "tipoUsuario varchar(100), descripcion varchar(200))");
         db.execSQL("create table tb_estadoEvento (id_estadoEvento integer primary key," +
                 " estadoEvento varchar(100), descripcion varchar(200)) ");
-        db.execSQL("create table tb_evento (id_evento integer primary key," +
+        db.execSQL("create table tb_evento (id_evento integer primary key AUTOINCREMENT," +
                 "evento varchar(200), fecha varchar(20), alcance varchar(100), descripcion varchar(300), id_estadoEvento integer)");
         db.execSQL("create table tb_familia (id_familia integer primary key," +
                 " familia varchar (100), nomPapa varchar(200), nomMama varchar(200), nomApoderado varchar(200))");
@@ -82,18 +82,18 @@ public class ManageOpenHelper extends SQLiteOpenHelper {
 
 
         db.execSQL("insert into tb_estadoEvento (id_estadoEvento, estadoEvento, descripcion)" +
-                "values ('1','Activo','Evento esta activo')");
+                "values (1,'Activo','Evento esta activo')");
         db.execSQL("insert into tb_estadoEvento (id_estadoEvento, estadoEvento, descripcion)" +
-                "values ('2','Inactivo','Evento esta inactivo')");
+                "values (2,'Inactivo','Evento esta inactivo')");
         db.execSQL("insert into tb_estadoEvento (id_estadoEvento, estadoEvento, descripcion)" +
-                "values ('3','Cerrado','Evento esta cerrado')");
+                "values (3,'Cerrado','Evento esta cerrado')");
 
-        db.execSQL("insert into tb_evento (id_evento, evento, fecha, alcance, descripcion, id_estadoEvento)" +
-                "values ('1','Evento 1','2017-04-03','Todos','Evento','1')");
-        db.execSQL("insert into tb_evento (id_evento, evento, fecha, alcance, descripcion, id_estadoEvento)" +
-                "values ('2','Evento 2','2017-04-03','Todos','Evento','2')");
-        db.execSQL("insert into tb_evento (id_evento, evento, fecha, alcance, descripcion, id_estadoEvento)" +
-                "values ('3','Evento 3','2017-04-03','Todos','Evento','3')");
+        db.execSQL("insert into tb_evento (evento, fecha, alcance, descripcion, id_estadoEvento)" +
+                "values ('Evento 1','2017-04-03','Todos','Evento',1)");
+        db.execSQL("insert into tb_evento (evento, fecha, alcance, descripcion, id_estadoEvento)" +
+                "values ('Evento 2','2017-04-03','Todos','Evento',2)");
+        db.execSQL("insert into tb_evento (evento, fecha, alcance, descripcion, id_estadoEvento)" +
+                "values ('Evento 3','2017-04-03','Todos','Evento',3)");
 
         db.execSQL("insert into tb_tipoUsuario (id_tipoUsuario, tipoUsuario, descripcion) " +
                 "values ('1','Administrador','Acceso total')");
