@@ -11,6 +11,7 @@ import com.example.mac.asistenciardm.adapters.HijosAdapter;
 import com.example.mac.asistenciardm.modelos.AsistentesEvento;
 import com.example.mac.asistenciardm.modelos.Combo;
 import com.example.mac.asistenciardm.modelos.Evento;
+import com.example.mac.asistenciardm.modelos.Familia;
 import com.example.mac.asistenciardm.modelos.Hijos;
 import com.example.mac.asistenciardm.modelos.Usuarios;
 
@@ -82,6 +83,9 @@ public class SentenciaSQL {
     }
 
 
+
+
+
     public ArrayList<AsistentesEvento> filtratListarFamiliasAsistieronEvento(String texto, int idEvento) {
         SQLiteDatabase db = conexion.getReadableDatabase();
         Cursor cursor = db.rawQuery("select A.id_asistenciaEvento, E.evento, F.familia, EA.estadoAsistencia, A.id_familia " +
@@ -133,6 +137,29 @@ public class SentenciaSQL {
                 hijos.setGrado(cursor.getString(cursor.getColumnIndex("grado")));
                 hijos.setSeccion(cursor.getString(cursor.getColumnIndex("seccion")));
                 lista.add(hijos);
+            } while (cursor.moveToNext());
+        }
+        return lista;
+    }
+
+    public void registrarParaAsistencia(int id_Familia, int id_Evento) {
+        SQLiteDatabase db = conexion.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("id_Familia", id_Familia);
+        contentValues.put("id_Evento", id_Evento);
+        contentValues.put("id_estadoAsistencia", 1);
+        db.insert("tb_asistenciaEvento", null, contentValues);
+    }
+
+    public ArrayList<Familia> listarFamilia() {
+        SQLiteDatabase db = conexion.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from tb_familia", null);
+        ArrayList<Familia> lista = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                lista.add(new Familia(
+                        cursor.getInt(cursor.getColumnIndex("id_familia")),
+                        cursor.getString(cursor.getColumnIndex("familia"))));
             } while (cursor.moveToNext());
         }
         return lista;

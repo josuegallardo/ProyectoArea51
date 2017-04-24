@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mac.asistenciardm.fragmentosMenu.AgregarFamiliaFragment;
 import com.example.mac.asistenciardm.fragmentosMenu.EstadisticaFragment;
 import com.example.mac.asistenciardm.fragmentosMenu.ModificarFragmento;
 import com.example.mac.asistenciardm.fragmentosMenu.VerificarFragment;
@@ -40,7 +41,6 @@ public class MainAsistenciaActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         idEventoo = getIntent().getIntExtra("idEvento", -1);
-
         // FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         //fab.setOnClickListener(new View.OnClickListener() {
         //  @Override
@@ -67,17 +67,8 @@ public class MainAsistenciaActivity extends AppCompatActivity
         tvUsuario.setText(rvusuario);
         tvTipoUsuario.setText(rvTipoUsurio);
 
-        if (idEventoo != 1) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            EstadisticaFragment estadisticaFragment = new EstadisticaFragment();
-            fragmentTransaction.replace(R.id.fgFragmento, estadisticaFragment);
-            fragmentTransaction.isAddToBackStackAllowed();
-            fragmentTransaction.commit();
-            setTitle("ESTADISTICA");
-        } else {
-
-
+        String estado = EventoActivity.estadoo;
+        if (estado.equals("Activo")) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             VerificarFragment verificarFragment = new VerificarFragment();
@@ -86,6 +77,16 @@ public class MainAsistenciaActivity extends AppCompatActivity
             fragmentTransaction.isAddToBackStackAllowed();
             fragmentTransaction.commit();
             setTitle("REGISTRO");
+        } else {
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            EstadisticaFragment estadisticaFragment = new EstadisticaFragment();
+            fragmentTransaction.replace(R.id.fgFragmento, estadisticaFragment);
+            fragmentTransaction.isAddToBackStackAllowed();
+            fragmentTransaction.commit();
+            setTitle("ESTADISTICA");
+
         }
     }
 
@@ -105,21 +106,7 @@ public class MainAsistenciaActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.main_asistencia, menu);
         return true;
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        // if (id == R.id.action_settings) {
-        //   return true;
-        //}
-
-        return super.onOptionsItemSelected(item);
-    }
+    
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -131,30 +118,9 @@ public class MainAsistenciaActivity extends AppCompatActivity
         VerificarFragment verificarFragment = new VerificarFragment();
         ModificarFragmento modificarFragmento = new ModificarFragmento();
         EstadisticaFragment estadisticaFragment = new EstadisticaFragment();
-        if (idEventoo != 1) {
-
-
-            if (id == R.id.nav_registrar) {
-                Toast.makeText(this, "Opcion no habilitada", Toast.LENGTH_SHORT).show();
-            } else if (id == R.id.nav_modificar) {
-                Toast.makeText(this, "Opcion no habilitada", Toast.LENGTH_SHORT).show();
-            } else if (id == R.id.nav_estadistica) {
-                fragmentTransaction.replace(R.id.fgFragmento, estadisticaFragment);
-                fragmentTransaction.commit();
-                setTitle("ESTADISTICA");
-            } else if (id == R.id.nav_informacionContacto) {
-                AlertDialog alertDialog = new AlertDialog.Builder(MainAsistenciaActivity.this).create();
-                alertDialog.setTitle("RDM APP");
-                alertDialog.setMessage("Todos los derechos reservados. Para mas informacion escribir a sistemas@rdm.edu.pe");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
-            }
-        }else{
+        String estadooo = getIntent().getStringExtra("estadoo");
+        String estado = EventoActivity.estadoo;
+        if (estado.equals("Activo")) {
             if (id == R.id.nav_registrar) {
                 int idEvento = getIntent().getIntExtra("idEvento", -1);
                 Bundle bundle = new Bundle();
@@ -184,16 +150,54 @@ public class MainAsistenciaActivity extends AppCompatActivity
                         });
                 alertDialog.show();
             }
-        }
+        } else {
 
+            if (id == R.id.nav_registrar) {
+                Toast.makeText(this, "Opcion no habilitada", Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.nav_modificar) {
+                Toast.makeText(this, "Opcion no habilitada", Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.nav_estadistica) {
+                fragmentTransaction.replace(R.id.fgFragmento, estadisticaFragment);
+                fragmentTransaction.commit();
+                setTitle("ESTADISTICA");
+            } else if (id == R.id.nav_informacionContacto) {
+                AlertDialog alertDialog = new AlertDialog.Builder(MainAsistenciaActivity.this).create();
+                alertDialog.setTitle("RDM APP");
+                alertDialog.setMessage("Todos los derechos reservados. Para mas informacion escribir a sistemas@rdm.edu.pe");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
     @Override
     protected void onResume() {
         super.onResume();
 
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.actionNuevoEvento) {
+            //Toast.makeText(this, "Holi", Toast.LENGTH_SHORT).show();
+            AgregarFamiliaFragment agregarFamiliaFragment = new AgregarFamiliaFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fgFragmento, agregarFamiliaFragment);
+            fragmentTransaction.commit();
+            setTitle("AGREGAR FAMILIA");
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
+

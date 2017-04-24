@@ -60,7 +60,8 @@ public class EventoActivity extends AppCompatActivity {
     @BindView(R.id.btOkEvento)
     Button btOkEvento;
 
-
+public static String estadoo;
+    public static int idEvento = 0;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -77,7 +78,8 @@ public class EventoActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setTitle("Seleccionar evento");
         //Intent intent = getIntent();
-        int aidiUsuario = getIntent().getIntExtra("idUsuario", -1);
+        //int aidiUsuario = getIntent().getIntExtra("idUsuario", -1);
+        int aidiUsuario = MainActivity.idUsuarioo;
         String rvusuario = getIntent().getStringExtra("usuario");
 
         if (aidiUsuario != 1) {
@@ -96,7 +98,7 @@ public class EventoActivity extends AppCompatActivity {
 
     private
     ArrayList<Combo> datoss = new ArrayList<>();
-    int idEvento = 0;
+
 
     @Override
     protected void onResume() {
@@ -149,6 +151,7 @@ public class EventoActivity extends AppCompatActivity {
                     etAlcacne.setText(alcance);
                     etDescripcion.setText(descripcion);
                     etEstadoEvento.setText(estado);
+                    estadoo = estado;
                 }
             }
 
@@ -169,7 +172,6 @@ public class EventoActivity extends AppCompatActivity {
               Intent intent =new Intent(EventoActivity.this, CrearEvento.class);
                 startActivity(intent);
                 break;
-
             default:
                 break;
         }
@@ -181,7 +183,9 @@ public class EventoActivity extends AppCompatActivity {
     @OnClick(R.id.btOkEvento)
     public void onClick() {
         Intent intent = new Intent(EventoActivity.this, MainAsistenciaActivity.class);
-        String usuario1 = getIntent().getStringExtra("usuario");
+        //String usuario1 = getIntent().getStringExtra("usuario");
+        String usuario1;
+        usuario1=MainActivity.usuariooo;
         SentenciaSQL sentenciaSQL = new SentenciaSQL(EventoActivity.this);
         Usuarios usuarioss = sentenciaSQL.obtenerUsuarioClave(usuario1);
         String password = sentenciaSQL.obtenerUsuarioClave(usuario1).getPassword();
@@ -195,6 +199,7 @@ public class EventoActivity extends AppCompatActivity {
         intent.putExtra("tipoUsuario", tipoUsuario);
         intent.putExtra("idUsuario", idUsuario);
         intent.putExtra("idEvento", idEvento);
+        intent.putExtra("estadoo", estadoo);
         startActivity(intent);
         overridePendingTransition(R.anim.left_in, R.anim.left_out);
     }

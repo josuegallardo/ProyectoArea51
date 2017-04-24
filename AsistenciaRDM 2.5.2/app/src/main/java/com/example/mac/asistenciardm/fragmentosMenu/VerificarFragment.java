@@ -29,9 +29,9 @@ public class VerificarFragment extends Fragment {
     @BindView(R.id.lvListaRegistrar)
     ListView lvListaRegistrar;
 
-    public VerificarFragment() {
+//    public VerificarFragment() {
         // Required empty public constructor
-    }
+  //  }
 
     private ArrayList<AsistentesEvento> lista;
     private ArrayList<AsistentesEvento> lista1;

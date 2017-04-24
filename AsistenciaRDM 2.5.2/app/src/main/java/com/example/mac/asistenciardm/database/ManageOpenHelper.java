@@ -34,7 +34,7 @@ public class ManageOpenHelper extends SQLiteOpenHelper {
                 " alumno varchar(200), nivel varchar(100), grado varchar(100), seccion varchar(100), id_familia integer)");
         db.execSQL("create table tb_estadoAsistencia (id_estadoAsistencia integer primary key," +
                 " estadoAsistencia varchar(100))");
-        db.execSQL("create table tb_asistenciaEvento (id_asistenciaEvento integer primary key," +
+        db.execSQL("create table tb_asistenciaEvento (id_asistenciaEvento integer primary key autoincrement," +
                 "id_evento integer, id_familia integer,  id_estadoAsistencia)");
 
 
@@ -109,28 +109,28 @@ public class ManageOpenHelper extends SQLiteOpenHelper {
 
 
         db.execSQL("insert into tb_estadoAsistencia(id_estadoAsistencia, estadoAsistencia) " +
-                "values ('1','invitado')");
+                "values (1,'invitado')");
         db.execSQL("insert into tb_estadoAsistencia(id_estadoAsistencia, estadoAsistencia) " +
-                "values ('2','Asistio')");
+                "values (2,'Asistio')");
         db.execSQL("insert into tb_estadoAsistencia(id_estadoAsistencia, estadoAsistencia) " +
-                "values ('3','No asistio')");
+                "values (3,'No asistio')");
 
-        db.execSQL("insert into tb_asistenciaEvento (id_asistenciaEvento, id_evento, id_familia, id_estadoAsistencia) " +
-                "values ('1','1','1',1)");
-        db.execSQL("insert into tb_asistenciaEvento (id_asistenciaEvento, id_evento, id_familia, id_estadoAsistencia) " +
-                "values ('2','1','2',1)");
-        db.execSQL("insert into tb_asistenciaEvento (id_asistenciaEvento, id_evento, id_familia, id_estadoAsistencia) " +
-                "values ('3','1','3',1)");
-        db.execSQL("insert into tb_asistenciaEvento (id_asistenciaEvento, id_evento, id_familia, id_estadoAsistencia) " +
-                "values ('4','1','4',1)");
-        db.execSQL("insert into tb_asistenciaEvento (id_asistenciaEvento, id_evento, id_familia, id_estadoAsistencia) " +
-                "values ('5','1','5',1)");
-        db.execSQL("insert into tb_asistenciaEvento (id_asistenciaEvento, id_evento, id_familia, id_estadoAsistencia) " +
-                "values ('6','1','6',1)");
-        db.execSQL("insert into tb_asistenciaEvento (id_asistenciaEvento, id_evento, id_familia, id_estadoAsistencia) " +
-                "values ('7','1','7',1)");
-        db.execSQL("insert into tb_asistenciaEvento (id_asistenciaEvento, id_evento, id_familia, id_estadoAsistencia) " +
-                "values ('8','1','8',1)");
+        db.execSQL("insert into tb_asistenciaEvento (id_evento, id_familia, id_estadoAsistencia) " +
+                "values (1,'1',1)");
+        db.execSQL("insert into tb_asistenciaEvento (id_evento, id_familia, id_estadoAsistencia) " +
+                "values (1,'2',1)");
+        db.execSQL("insert into tb_asistenciaEvento (id_evento, id_familia, id_estadoAsistencia) " +
+                "values (1,'3',1)");
+        db.execSQL("insert into tb_asistenciaEvento (id_evento, id_familia, id_estadoAsistencia) " +
+                "values (1,'4',1)");
+        db.execSQL("insert into tb_asistenciaEvento (id_evento, id_familia, id_estadoAsistencia) " +
+                "values (1,'5',1)");
+        db.execSQL("insert into tb_asistenciaEvento (id_evento, id_familia, id_estadoAsistencia) " +
+                "values (1,'6',1)");
+        db.execSQL("insert into tb_asistenciaEvento (id_evento, id_familia, id_estadoAsistencia) " +
+                "values (1,'7',1)");
+        db.execSQL("insert into tb_asistenciaEvento (id_evento, id_familia, id_estadoAsistencia) " +
+                "values (1,'8',1)");
 
 
     }

@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.btIniciarSesion)
     Button btIniciarSesion;
 
-    //@BindView(R.id.lvLista)
-    //ListView lvLista;
+public static String usuariooo;
+public static int idUsuarioo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +40,13 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
-   public String usuario = etUsuarioLoguin.getText().toString();
+
     @OnClick(R.id.btIniciarSesion)
     public void onClick() {
+       // usuariooo = etUsuarioLoguin.getText().toString();
 
-        //String usuario = etUsuarioLoguin.getText().toString();
+        String usuario = etUsuarioLoguin.getText().toString();
+        usuariooo = usuario;
         String clave = etClaveLogin.getText().toString();
         if (usuario.trim().length()==0){
             etUsuarioLoguin.setError("Ingrese un usuario");
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             String apellidos = sentenciaSQL.obtenerUsuarioClave(usuario).getApellidos();
             int tipoUsuario = sentenciaSQL.obtenerUsuarioClave(usuario).getId_tipoUsuario();
             int idUsuario = sentenciaSQL.obtenerUsuarioClave(usuario).getId_usuario();
-
+            idUsuarioo = idUsuario;
             if (clave.equals(password)) {
                 Toast.makeText(this, "Bienvenido: " + nombre + " " + apellidos, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, EventoActivity.class);
