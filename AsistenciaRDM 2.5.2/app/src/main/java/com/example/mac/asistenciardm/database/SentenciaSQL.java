@@ -151,9 +151,11 @@ public class SentenciaSQL {
         db.insert("tb_asistenciaEvento", null, contentValues);
     }
 
-    public ArrayList<Familia> listarFamilia() {
+    public ArrayList<Familia> listarFamilia(int id_evento) {
         SQLiteDatabase db = conexion.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from tb_familia", null);
+      //  Cursor cursor = db.rawQuery("select F.id_familia,  F.familia from tb_familia F, tb_asistenciaEvento AE " +
+        //        "where AE.id_familia =1 and F.id_familia = AE.id_familia", null);
+      Cursor cursor = db.rawQuery("select * from tb_familia", null);
         ArrayList<Familia> lista = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {

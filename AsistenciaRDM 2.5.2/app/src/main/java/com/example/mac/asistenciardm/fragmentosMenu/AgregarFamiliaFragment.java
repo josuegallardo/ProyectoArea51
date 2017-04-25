@@ -49,7 +49,7 @@ public class AgregarFamiliaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_agregar_familia, container, false);
         ButterKnife.bind(this, view);
         final SentenciaSQL sentenciaSQL = new SentenciaSQL(getActivity());
-        lista = sentenciaSQL.listarFamilia();
+        lista = sentenciaSQL.listarFamilia(EventoActivity.idEvento);
         final FamiliaAdapter familiaAdapter = new FamiliaAdapter(lista, getContext());
         lvListaFamilias.setAdapter(familiaAdapter);
         lvListaFamilias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -66,14 +66,23 @@ public class AgregarFamiliaFragment extends Fragment {
                         int id_evento = EventoActivity.idEvento;
 
                         sentenciaSQL.registrarParaAsistencia(idFamilia, id_evento);
-                        Toast.makeText(getActivity(), "Se agrego la familia", Toast.LENGTH_SHORT).show();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        Toast.makeText(getActivity(), "Se agrego a la familia", Toast.LENGTH_SHORT).show();
+                        VerificarFragment verificarFragment = new VerificarFragment();
+                        fragmentTransaction.replace(R.id.fgFragmento, verificarFragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
                         dialog.dismiss();
                     }
                 });
+
+
                 alertDialog.show();
+
+
             }
         });
-
 
         // Inflate the layout for this fragment
         //View view = inflater.inflate(R.layout.fragment_agregar_familia, container, false);
